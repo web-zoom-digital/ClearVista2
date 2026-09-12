@@ -115,18 +115,54 @@ const PRODUCTS = [
     id: '09',
     name: 'Sliding Patio Doors',
     tagline: 'Open the wall. Invite the outside in.',
-    desc: 'Large-format sliding doors that dissolve the boundary between interior and exterior. Multi-panel configurations slide behind each other for a completely unobstructed opening.',
-    features: ['Low 15mm threshold', 'Multi-point locking bar', 'Integrated insect mesh', 'Anti-slam soft-close'],
-    img: '/win_sliding_view.jpg',
+    desc: 'Large-format sliding door systems that dissolve the boundary between interior and exterior. Multi-panel configurations glide silently behind each other to create a completely unobstructed opening to your garden, terrace or balcony.',
+    features: ['Ultra-low 15mm threshold', 'Multi-point security lock bar', 'Integrated full-width insect mesh', 'Anti-slam soft-close dampers'],
+    img: '/lifestyle_interior.jpg',
     category: 'doors',
   },
   {
     id: '10',
+    name: 'Bi-Fold Doors',
+    tagline: 'Fold the wall. Frame the outside.',
+    desc: 'Our bi-fold door system folds back entirely to create a full-width, seamless opening. When open, it disappears — leaving nothing between your interior and the landscape beyond.',
+    features: ['Opens up to 100% clear span', 'Concealed precision roller system', 'Thermally broken aluminium-uPVC hybrid', 'Custom panel configurations: 2 to 7 panels'],
+    img: '/hero_interior.jpg',
+    category: 'doors',
+  },
+  {
+    id: '11',
+    name: 'French / Casement Doors',
+    tagline: 'Classic double doors. Enduring elegance.',
+    desc: 'Traditional double-leaf doors that open outward or inward with a side hinge. Full-height glass panels flood interiors with light. Available in inward or outward opening configurations for any facade.',
+    features: ['Inward or outward opening', 'Full-height double-glazed panels', 'Multi-point 5-lever locking', 'Fly screen option available'],
+    img: '/gallery_homes.jpg',
+    category: 'doors',
+  },
+  {
+    id: '12',
+    name: 'Lift & Slide Doors',
+    tagline: 'Effortless. Even at seven metres wide.',
+    desc: 'Lift-and-slide technology lifts the door off its seal before sliding, making even the largest heavy-glass panels effortless to operate. Ideal for luxury villas and hotel projects requiring maximum clear-opening widths.',
+    features: ['Handles spans up to 7m wide', 'Lift-off-seal before sliding', 'Minimal 20mm sightlines', 'Triple-glazing compatible'],
+    img: '/gallery_office.jpg',
+    category: 'doors',
+  },
+  {
+    id: '13',
+    name: 'Tilt & Turn Doors',
+    tagline: 'Secure ventilation. Full access. One door.',
+    desc: 'The European tilt-and-turn mechanism adapted for full door height. Tilt from the top for controlled, secure ventilation with the door locked — or swing fully open for unrestricted access.',
+    features: ['Tilt-vent + full-turn mechanism', 'Ideal for apartments & balconies', 'RC2 burglar resistance rated', 'Child-safe restrictors included'],
+    img: '/gallery_commercial.jpg',
+    category: 'doors',
+  },
+  {
+    id: '14',
     name: 'Entrance / Main Doors',
     tagline: 'The first impression. Built to last.',
-    desc: 'Solid, secure and architecturally considered. Our entrance door system combines the thermal and acoustic performance of our window profiles with the structural demands of a primary access point.',
-    features: ['5-point security deadlock', '70mm reinforced profile', 'Class RC2 burglar resistance', 'Full-height or glazed options'],
-    img: '/gallery_commercial.jpg',
+    desc: 'Solid, secure and architecturally considered. Our entrance door system combines the same multi-chamber uPVC engineering as our windows with a reinforced 70mm profile, heavy-duty hinges and a 5-point security deadlock system.',
+    features: ['5-point deadlock security', '70mm reinforced uPVC profile', 'RC2 burglar resistance certified', 'Full-height or half-glazed options'],
+    img: '/footer_cta_bg.jpg',
     category: 'doors',
   },
 ];
@@ -393,7 +429,7 @@ function ProductHero({ activeTab, setActiveTab }: { activeTab: 'windows' | 'door
                 borderBottom: activeTab === tab ? `1.5px solid ${G}` : '1.5px solid transparent',
                 transition: 'all 0.25s ease', fontFamily: 'Outfit, sans-serif',
               }}>
-                {tab === 'windows' ? 'Windows — 8 Systems' : 'Doors — 2 Systems'}
+                {tab === 'windows' ? 'Windows — 8 Systems' : 'Doors — 6 Systems'}
               </button>
             ))}
           </div>
@@ -414,7 +450,7 @@ function ProductHero({ activeTab, setActiveTab }: { activeTab: 'windows' | 'door
 function StatsStrip({ type }: { type: 'windows' | 'doors' }) {
   const stats = type === 'windows'
     ? [{ n: '8', l: 'Window Systems' }, { n: '6+', l: 'Colour Finishes' }, { n: 'A+', l: 'Energy Rating' }, { n: '10yr', l: 'Warranty' }]
-    : [{ n: '2', l: 'Door Systems' }, { n: '5pt', l: 'Locking Points' }, { n: 'RC2', l: 'Burglar Rating' }, { n: '10yr', l: 'Warranty' }];
+    : [{ n: '6', l: 'Door Systems' }, { n: '5pt', l: 'Locking Points' }, { n: 'RC2', l: 'Burglar Rating' }, { n: '10yr', l: 'Warranty' }];
   return (
     <div style={{ background: '#0d0d0d', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
       <div style={{ maxWidth: '1440px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
@@ -476,13 +512,13 @@ function SectionIntro({ type }: { type: 'windows' | 'doors' }) {
             {type === 'windows' ? 'Window Systems' : 'Door Systems'}
           </p>
           <h2 style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: 900, letterSpacing: '-0.02em', textTransform: 'uppercase', color: W, lineHeight: 1.08 }}>
-            {type === 'windows' ? 'Eight systems.\nOne standard of excellence.' : 'Two systems.\nOne standard of security.'}
+            {type === 'windows' ? 'Eight systems.\nOne standard of excellence.' : 'Six systems.\nOne standard of security.'}
           </h2>
         </div>
         <p style={{ fontSize: '13.5px', color: 'rgba(255,255,255,0.38)', lineHeight: 1.9 }}>
           {type === 'windows'
             ? 'Every ClearVista window is manufactured from premium European multi-chamber uPVC profiles with steel reinforcement, argon-filled double glazing and a three-seal system. Available in six colour finishes.'
-            : 'Our door systems share the same uPVC profile engineering as our windows — delivering consistent thermal performance, acoustic insulation and a decade of reliable, low-maintenance operation.'}
+            : 'Six door systems, built on the same multi-chamber uPVC engineering as our windows. Sliding, bi-fold, French, lift-and-slide, tilt-and-turn, and entrance — each delivering premium security, thermal performance and low-maintenance operation.'}
         </p>
       </div>
     </FadeUp>
