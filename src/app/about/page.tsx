@@ -15,7 +15,7 @@ export default function AboutPage() {
     <main style={{ background: '#0a0a0a', minHeight: '100vh', paddingTop: '72px' }}>
       {/* Hero */}
       <section style={{ position: 'relative', height: '65vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', background: '#050505' }}>
-        <Image src="/about_hero.jpg" alt="About ClearVista" fill priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
+        <Image src="/about_hero_new.jpg" alt="About ClearVista" fill priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '0 48px 64px' }}>
           <p style={{ fontSize: '11px', letterSpacing: '0.25em', color: '#c8a96e', fontWeight: 600, textTransform: 'uppercase', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '12px' }}>
