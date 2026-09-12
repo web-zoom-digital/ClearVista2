@@ -338,26 +338,39 @@ const ADV_FEATURES = [
   { title: 'Precision Hardware', desc: 'European-standard multi-point locking mechanisms and corrosion-resistant stainless fittings.' },
 ];
 
-function AdvantageSection() {
+function AdvantageSection({ activeTab }: { activeTab: 'windows' | 'doors' }) {
+  const isDoors = activeTab === 'doors';
   return (
     <section id="advantage" style={{ background: '#080808', padding: '0', borderTop: '1px solid rgba(200,169,110,0.1)', borderBottom: '1px solid rgba(200,169,110,0.1)' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '55% 45%', minHeight: '680px' }}>
 
-        {/* LEFT: uPVC Cutaway Image */}
+        {/* LEFT: Image — uPVC cutaway for windows, door image for doors */}
         <div style={{ position: 'relative', overflow: 'hidden' }}>
           <Image
-            src="/upvc_cutaway.png"
-            alt="ClearVista uPVC Profile Cross-Section"
+            src={isDoors ? '/gallery_homes.jpg' : '/upvc_cutaway.png'}
+            alt={isDoors ? 'ClearVista Premium Door Systems' : 'ClearVista uPVC Profile Cross-Section'}
             fill
             loading="lazy"
-            style={{ objectFit: 'cover', objectPosition: 'center', filter: 'brightness(0.88) contrast(1.05)' }}
+            style={{
+              objectFit: 'cover',
+              objectPosition: isDoors ? 'center 30%' : 'center',
+              filter: isDoors ? 'brightness(0.6) contrast(1.1)' : 'brightness(0.88) contrast(1.05)',
+            }}
           />
           {/* Right edge fade to text */}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 50%, rgba(8,8,8,0.85) 100%)' }} />
           {/* Bottom label */}
           <div style={{ position: 'absolute', bottom: '32px', left: '36px' }}>
-            <p style={{ fontSize: '9px', letterSpacing: '0.25em', color: 'rgba(200,169,110,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>UPVC PROFILE — CROSS SECTION</p>
+            <p style={{ fontSize: '9px', letterSpacing: '0.25em', color: 'rgba(200,169,110,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>
+              {isDoors ? 'DOOR SYSTEMS — BUILT TO LAST' : 'UPVC PROFILE — CROSS SECTION'}
+            </p>
           </div>
+          {/* Doors overlay text */}
+          {isDoors && (
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', pointerEvents: 'none' }}>
+              <p style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 900, letterSpacing: '-0.02em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.08)', lineHeight: 1, whiteSpace: 'nowrap' }}>DOORS</p>
+            </div>
+          )}
         </div>
 
         {/* RIGHT: Feature labels */}
@@ -370,7 +383,9 @@ function AdvantageSection() {
             The ClearVista<br />Advantage
           </h2>
           <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', lineHeight: 1.8, marginBottom: '44px', maxWidth: '380px' }}>
-            A closer look at what makes our systems perform. Every chamber, seal and fitting is chosen for a reason.
+            {isDoors
+              ? 'Every ClearVista door is built on the same engineering platform as our windows. The same profile. The same seals. The same promise.'
+              : 'A closer look at what makes our systems perform. Every chamber, seal and fitting is chosen for a reason.'}
           </p>
 
           {/* Feature list */}
@@ -544,7 +559,7 @@ export default function ProductsPage() {
           ))}
         </div>
       </div>
-      <AdvantageSection />
+      <AdvantageSection activeTab={activeTab} />
       <BottomCTA />
     </main>
   );
