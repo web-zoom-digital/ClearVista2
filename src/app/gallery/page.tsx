@@ -14,9 +14,9 @@ const galleryItems = [
 
 export default function GalleryPage() {
   return (
-    <main style={{ background: '#0a0a0a', minHeight: '100vh', paddingTop: '72px' }}>
-      <section style={{ background: '#141414', padding: '80px 48px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+    <main style={{ background: '#0a0a0a', minHeight: '100vh', paddingTop: '64px' }}>
+      <section style={{ background: '#141414', padding: '56px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+        <div className="section-inner">
           <p style={{ fontSize: '11px', letterSpacing: '0.25em', color: '#c8a96e', fontWeight: 600, textTransform: 'uppercase', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ width: '28px', height: '1px', background: '#c8a96e', display: 'inline-block' }} />
             Real Spaces
@@ -30,8 +30,9 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section style={{ padding: '60px 48px', maxWidth: '1400px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3px' }}>
+      <section style={{ padding: '52px 0' }}>
+        <div className="section-inner">
+        <div className="spaces-grid">
           {galleryItems.map((item, i) => (
             <div key={i} style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer', aspectRatio: i % 5 === 0 ? '1' : '4/3' }}
               onMouseEnter={(e) => {
@@ -54,9 +55,10 @@ export default function GalleryPage() {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
-      <section style={{ background: '#141414', padding: '80px 48px', textAlign: 'center' }}>
+      <section style={{ background: '#141414', padding: '64px 0', textAlign: 'center' }}>
         <h2 style={{ fontFamily: 'Outfit', fontSize: '2rem', fontWeight: 900, textTransform: 'uppercase', color: 'white', marginBottom: '16px' }}>
           Your Home, Next.
         </h2>

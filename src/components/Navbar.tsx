@@ -35,20 +35,20 @@ export default function Navbar() {
         borderBottom: scrolled ? '1px solid rgba(200,169,110,0.12)' : '1px solid transparent',
       }}
     >
-      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 52px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
+      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
 
         {/* Logo */}
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
-          <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: '17px', fontWeight: 900, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'white' }}>
+          <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: '16px', fontWeight: 900, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'white' }}>
             CLEARVISTA
           </span>
-          <span style={{ fontSize: '7.5px', letterSpacing: '0.25em', color: GOLD, fontWeight: 400, textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '7px', letterSpacing: '0.22em', color: GOLD, fontWeight: 400, textTransform: 'uppercase' }}>
             Windows to a Brighter Tomorrow
           </span>
         </Link>
 
         {/* Desktop Nav Links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }} className="hidden lg:flex">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="hidden lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -70,7 +70,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* GET A QUOTE button (outline style) */}
+        {/* GET A QUOTE button */}
         <div className="hidden lg:flex">
           <Link
             href="/contact"
@@ -95,6 +95,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           style={{ display: 'flex', flexDirection: 'column', gap: '5px', padding: '8px', background: 'none', border: 'none', cursor: 'pointer' }}
           className="flex lg:hidden"
+          aria-label="Toggle menu"
         >
           {[0, 1, 2].map((i) => (
             <span key={i} style={{
@@ -107,15 +108,15 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu dropdown */}
       {menuOpen && (
-        <div style={{ background: 'rgba(8,8,8,0.98)', padding: '16px 52px 28px', borderTop: '1px solid rgba(200,169,110,0.12)' }}>
+        <div style={{ background: 'rgba(8,8,8,0.99)', padding: '8px 20px 24px', borderTop: '1px solid rgba(200,169,110,0.12)' }}>
           {navLinks.map(link => (
-            <Link key={link.label} href={link.href} onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '12px 0', fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+            <Link key={link.label} href={link.href} onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '14px 0', fontSize: '12px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'inline-flex', marginTop: '20px', padding: '11px 26px', border: '1px solid rgba(255,255,255,0.3)', color: 'white', fontSize: '10px', fontWeight: 700, letterSpacing: '0.13em', textTransform: 'uppercase', textDecoration: 'none' }}>
+          <Link href="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'inline-flex', marginTop: '20px', padding: '12px 28px', background: GOLD, color: '#0a0a0a', fontSize: '11px', fontWeight: 800, letterSpacing: '0.13em', textTransform: 'uppercase', textDecoration: 'none' }}>
             Get a Quote →
           </Link>
         </div>

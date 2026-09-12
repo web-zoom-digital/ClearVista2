@@ -50,3 +50,134 @@ body {
     .flex.lg\:hidden { display: none !important; }
   }
 }
+
+/* ============================
+   RESPONSIVE UTILITY CLASSES
+   ============================ */
+
+/* Section padding responsive */
+.section-pad { padding: 96px 0; }
+.section-inner { max-width: 1440px; margin: 0 auto; padding: 0 52px; }
+
+/* Hero */
+.hero-content-pad { padding: 0 52px 92px; }
+
+/* Window grid: 4 cols → 2 cols → 1 col */
+.win-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+
+/* Performance grid: 5 cols → 2 cols → 1 col */
+.perf-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+
+/* Stats grid: 4 cols → 2 cols */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+
+/* Lifestyle 2-col → 1 col */
+.lifestyle-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: start; }
+
+/* Advantage 2-col → 1 col */
+.advantage-grid { display: grid; grid-template-columns: 4fr 8fr; gap: 80px; align-items: center; }
+
+/* Advantage inner grid */
+.advantage-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: stretch; }
+
+/* Make it yours swatches row */
+.swatches-row { display: flex; gap: 16px; align-items: flex-start; }
+.swatch-item { width: 130px; height: 88px; }
+
+/* Real Spaces grid */
+.spaces-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+
+/* 2-col generic grid */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+/* Testimonials grid */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+/* Make It Yours main layout */
+.miy-layout { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+
+/* ============================
+   MOBILE STYLES (≤ 768px)
+   ============================ */
+@media (max-width: 768px) {
+  /* Nav mobile padding */
+  .section-inner { padding: 0 20px; }
+  .section-pad { padding: 56px 0; }
+  .hero-content-pad { padding: 0 20px 60px; }
+
+  /* Hero min-height for mobile */
+  .hero-section { min-height: 100svh !important; }
+  .hero-top-label { display: none !important; }
+
+  /* Bottom tags on hero */
+  .hero-bottom-tags { margin-top: 36px !important; flex-wrap: wrap; gap: 10px; }
+
+  /* Window grid: 2 columns on mobile */
+  .win-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .win-header-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px; }
+
+  /* Performance: 2 col on mobile */
+  .perf-grid { grid-template-columns: repeat(2, 1fr) !important; border: none !important; }
+
+  /* Lifestyle: stack vertically */
+  .lifestyle-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* Advantage: stack vertically */
+  .advantage-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .advantage-inner { grid-template-columns: 1fr !important; }
+  .advantage-img { height: 280px !important; }
+
+  /* Make it yours: stack layout */
+  .miy-layout { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .miy-cta { border-left: none !important; border-top: 1px solid rgba(255,255,255,0.1) !important; padding-left: 0 !important; padding-top: 24px !important; }
+  .swatches-row { flex-wrap: wrap !important; gap: 12px !important; }
+  .swatch-item { width: 80px !important; height: 56px !important; }
+
+  /* Real Spaces: 1 col */
+  .spaces-grid { grid-template-columns: 1fr !important; }
+  .spaces-header-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+
+  /* Testimonials: 1 col */
+  .testi-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* Stats: 2 cols */
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* 2-col generic → single col */
+  .two-col { grid-template-columns: 1fr !important; gap: 36px !important; }
+
+  /* footer CTA padding */
+  .footer-cta-inner { padding: 0 20px !important; text-align: center; }
+}
+
+/* ============================
+   TABLET STYLES (769px – 1023px)
+   ============================ */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .section-inner { padding: 0 32px; }
+  .hero-content-pad { padding: 0 32px 72px; }
+
+  /* 4-col → 2-col */
+  .win-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* 5-col → 3-col */
+  .perf-grid { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* lifestyle stays 2-col but closer */
+  .lifestyle-grid { gap: 40px !important; }
+
+  /* Advantage stack */
+  .advantage-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* Swatches */
+  .swatches-row { flex-wrap: wrap !important; }
+  .swatch-item { width: 100px !important; height: 68px !important; }
+  .miy-layout { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .miy-cta { border-left: none !important; border-top: 1px solid rgba(255,255,255,0.1) !important; padding-left: 0 !important; padding-top: 24px !important; }
+
+  /* Stats: 2-col */
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Testimonials: 2-col */
+  .testi-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
