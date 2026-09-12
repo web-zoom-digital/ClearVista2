@@ -338,40 +338,123 @@ const ADV_FEATURES = [
   { title: 'Precision Hardware', desc: 'European-standard multi-point locking mechanisms and corrosion-resistant stainless fittings.' },
 ];
 
+const DOOR_ADV_FEATURES = [
+  { title: '5-Point Security Lock', desc: 'Multi-point deadbolt system engages simultaneously at 5 positions along the door frame. RC2 burglar resistance certified.' },
+  { title: '70mm Reinforced Profile', desc: 'Heavy-duty 70mm uPVC door profile with galvanised steel core for maximum structural rigidity and warp resistance.' },
+  { title: 'Double / Triple Glazing', desc: 'Argon-filled insulated glass units with warm-edge spacers. Significantly reduces heat loss, noise and UV penetration.' },
+  { title: 'Triple Compression Seal', desc: 'Three-line compression gasket system creates a fully airtight, watertight door perimeter — no draughts, no water ingress.' },
+  { title: '3D Adjustable Hinges', desc: 'Heavy-duty stainless steel butt hinges with 3D adjustment for precise alignment. Rated for years of continuous daily use.' },
+  { title: 'Anti-Slam & Soft-Close', desc: 'Hydraulic closer system controls door speed silently. Prevents slamming, protects frame and hardware from impact stress.' },
+];
+
+/* Window slideshow images */
+const WIN_ADV_IMGS = [
+  { src: '/win_structure_1.png', label: 'SLIDING SYSTEM — TRACK & ROLLER DETAIL' },
+  { src: '/win_structure_2.png', label: 'UPVC WINDOW PROFILE — CROSS SECTION' },
+];
+
+/* Updated window-specific features */
+const WIN_ADV_FEATURES_UPDATED = [
+  { title: '6-Chamber uPVC Profile', desc: 'Multi-chamber construction delivers a U-value below 1.0 W/m²K. Precision-extruded for perfect dimensional tolerance every time.' },
+  { title: 'Galvanised Steel Core', desc: 'Hot-dip galvanised steel reinforcement inside every load-bearing profile. Zero warping. Maximum dimensional stability.' },
+  { title: 'Argon Double Glazing', desc: 'Factory-sealed argon-filled IGUs with warm-edge spacer bars. Cuts heat loss, eliminates cold bridging and reduces condensation.' },
+  { title: 'Triple EPDM Seal', desc: 'Three-line weatherseal gasket system around every sash. Blocks wind-driven rain, dust infiltration and road noise.' },
+  { title: 'Precision Roller Tracks', desc: 'Stainless-steel ball-bearing rollers on hardened tracks. Silent, smooth operation with zero stick — even after years of use.' },
+  { title: 'Multi-Point Locking', desc: 'European multi-point locking engages simultaneously at three or more positions. Tested to 25,000 open-close cycles.' },
+];
+
+function WindowAdvantageImage() {
+  const [idx, setIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setIdx(prev => (prev + 1) % WIN_ADV_IMGS.length);
+        setFading(false);
+      }, 400);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const current = WIN_ADV_IMGS[idx];
+
+  return (
+    <div style={{ position: 'relative', overflow: 'hidden', background: '#050505', height: '100%' }}>
+      <Image
+        key={current.src}
+        src={current.src}
+        alt={current.label}
+        fill
+        loading="lazy"
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center',
+          opacity: fading ? 0 : 1,
+          transition: 'opacity 0.4s ease',
+          filter: 'brightness(0.88) contrast(1.06)',
+        }}
+      />
+      {/* Right edge fade */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 48%, rgba(8,8,8,0.88) 100%)' }} />
+      {/* Bottom bar */}
+      <div style={{ position: 'absolute', bottom: '28px', left: '32px', right: '32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <p style={{ fontSize: '9px', letterSpacing: '0.22em', color: 'rgba(200,169,110,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>
+          {current.label}
+        </p>
+        {/* Dot indicators */}
+        <div style={{ display: 'flex', gap: '6px' }}>
+          {WIN_ADV_IMGS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setFading(true); setTimeout(() => { setIdx(i); setFading(false); }, 300); }}
+              style={{
+                width: i === idx ? '20px' : '6px',
+                height: '6px',
+                borderRadius: '3px',
+                background: i === idx ? G : 'rgba(255,255,255,0.25)',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                transition: 'all 0.35s ease',
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AdvantageSection({ activeTab }: { activeTab: 'windows' | 'doors' }) {
   const isDoors = activeTab === 'doors';
+  const features = isDoors ? DOOR_ADV_FEATURES : WIN_ADV_FEATURES_UPDATED;
+
   return (
     <section id="advantage" style={{ background: '#080808', padding: '0', borderTop: '1px solid rgba(200,169,110,0.1)', borderBottom: '1px solid rgba(200,169,110,0.1)' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '55% 45%', minHeight: '680px' }}>
 
-        {/* LEFT: Image — uPVC cutaway for windows, door image for doors */}
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
-          <Image
-            src={isDoors ? '/gallery_homes.jpg' : '/upvc_cutaway.png'}
-            alt={isDoors ? 'ClearVista Premium Door Systems' : 'ClearVista uPVC Profile Cross-Section'}
-            fill
-            loading="lazy"
-            style={{
-              objectFit: 'cover',
-              objectPosition: isDoors ? 'center 30%' : 'center',
-              filter: isDoors ? 'brightness(0.6) contrast(1.1)' : 'brightness(0.88) contrast(1.05)',
-            }}
-          />
-          {/* Right edge fade to text */}
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 50%, rgba(8,8,8,0.85) 100%)' }} />
-          {/* Bottom label */}
-          <div style={{ position: 'absolute', bottom: '32px', left: '36px' }}>
-            <p style={{ fontSize: '9px', letterSpacing: '0.25em', color: 'rgba(200,169,110,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>
-              {isDoors ? 'DOOR SYSTEMS — BUILT TO LAST' : 'UPVC PROFILE — CROSS SECTION'}
-            </p>
-          </div>
-          {/* Doors overlay text */}
-          {isDoors && (
-            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', pointerEvents: 'none' }}>
-              <p style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 900, letterSpacing: '-0.02em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.08)', lineHeight: 1, whiteSpace: 'nowrap' }}>DOORS</p>
+        {/* LEFT: Auto-slideshow for windows / single image for doors */}
+        {isDoors ? (
+          <div style={{ position: 'relative', overflow: 'hidden', background: '#050505' }}>
+            <Image
+              src="/door_internal_structure.jpg"
+              alt="ClearVista uPVC Door Profile Cross-Section — internal structure"
+              fill
+              loading="lazy"
+              style={{ objectFit: 'contain', objectPosition: 'center', padding: '32px', filter: 'brightness(0.95) contrast(1.08)' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 65%, rgba(8,8,8,0.9) 100%)' }} />
+            <div style={{ position: 'absolute', bottom: '28px', left: '32px' }}>
+              <p style={{ fontSize: '9px', letterSpacing: '0.25em', color: 'rgba(200,169,110,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>
+                UPVC DOOR PROFILE — CROSS SECTION
+              </p>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <WindowAdvantageImage />
+        )}
 
         {/* RIGHT: Feature labels */}
         <FadeUp delay={0} style={{ padding: '72px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -390,8 +473,8 @@ function AdvantageSection({ activeTab }: { activeTab: 'windows' | 'doors' }) {
 
           {/* Feature list */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-            {ADV_FEATURES.map((f, i) => (
-              <FadeUp key={f.title} delay={i * 80} style={{ display: 'flex', gap: '18px', padding: '18px 0', borderBottom: i < ADV_FEATURES.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+            {features.map((f, i) => (
+              <FadeUp key={f.title} delay={i * 80} style={{ display: 'flex', gap: '18px', padding: '16px 0', borderBottom: i < features.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
                 <span style={{ color: G, fontSize: '10px', fontWeight: 700, flexShrink: 0, marginTop: '3px', letterSpacing: '0.05em' }}>0{i + 1}</span>
                 <div>
                   <h4 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.85)', marginBottom: '5px' }}>{f.title}</h4>
