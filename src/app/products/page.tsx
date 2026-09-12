@@ -363,7 +363,12 @@ const WIN_ADV_FEATURES_UPDATED = [
   { title: 'Multi-Point Locking', desc: 'European multi-point locking engages simultaneously at three or more positions. Tested to 25,000 open-close cycles.' },
 ];
 
-function WindowAdvantageImage() {
+const DOOR_ADV_IMGS = [
+  { src: '/door_internal_structure.jpg', label: 'UPVC DOOR PROFILE — CROSS SECTION' },
+  { src: '/door_structure_light.jpg', label: 'UPVC DOOR PROFILE — INTERNAL VIEW' },
+];
+
+function AdvantageImageSlideshow({ images }: { images: { src: string, label: string }[] }) {
   const [idx, setIdx] = useState(0);
   const [fading, setFading] = useState(false);
 
@@ -371,14 +376,14 @@ function WindowAdvantageImage() {
     const timer = setInterval(() => {
       setFading(true);
       setTimeout(() => {
-        setIdx(prev => (prev + 1) % WIN_ADV_IMGS.length);
+        setIdx(prev => (prev + 1) % images.length);
         setFading(false);
       }, 400);
     }, 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
-  const current = WIN_ADV_IMGS[idx];
+  const current = images[idx];
 
   return (
     <div style={{ position: 'relative', overflow: 'hidden', background: '#050505', height: '100%' }}>
@@ -406,7 +411,7 @@ function WindowAdvantageImage() {
         </p>
         {/* Dot indicators */}
         <div style={{ display: 'flex', gap: '6px' }}>
-          {WIN_ADV_IMGS.map((_, i) => (
+          {images.map((_, i) => (
             <button
               key={i}
               onClick={() => { setFading(true); setTimeout(() => { setIdx(i); setFading(false); }, 300); }}
@@ -436,26 +441,8 @@ function AdvantageSection({ activeTab }: { activeTab: 'windows' | 'doors' }) {
     <section id="advantage" style={{ background: '#080808', padding: '0', borderTop: '1px solid rgba(200,169,110,0.1)', borderBottom: '1px solid rgba(200,169,110,0.1)' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '55% 45%', minHeight: '680px' }}>
 
-        {/* LEFT: Auto-slideshow for windows / single image for doors */}
-        {isDoors ? (
-          <div style={{ position: 'relative', overflow: 'hidden', background: '#050505' }}>
-            <Image
-              src="/door_internal_structure.jpg"
-              alt="ClearVista uPVC Door Profile Cross-Section — internal structure"
-              fill
-              loading="lazy"
-              style={{ objectFit: 'contain', objectPosition: 'center', padding: '32px', filter: 'brightness(0.95) contrast(1.08)' }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 65%, rgba(8,8,8,0.9) 100%)' }} />
-            <div style={{ position: 'absolute', bottom: '28px', left: '32px' }}>
-              <p style={{ fontSize: '9px', letterSpacing: '0.25em', color: 'rgba(200,169,110,0.7)', textTransform: 'uppercase', fontWeight: 600 }}>
-                UPVC DOOR PROFILE — CROSS SECTION
-              </p>
-            </div>
-          </div>
-        ) : (
-          <WindowAdvantageImage />
-        )}
+        {/* LEFT: Auto-slideshow for windows and doors */}
+        <AdvantageImageSlideshow images={isDoors ? DOOR_ADV_IMGS : WIN_ADV_IMGS} />
 
         {/* RIGHT: Feature labels */}
         <FadeUp delay={0} style={{ padding: '72px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
