@@ -33,12 +33,15 @@ function HeroSection() {
 
       {/* Main content */}
       <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: '1440px', margin: '0 auto', padding: '0 52px 92px' }}>
-        {/* uPVC WINDOWS label */}
-        <p style={{ fontSize: '10px', letterSpacing: '0.28em', color: GOLD, fontWeight: 600, textTransform: 'uppercase', marginBottom: '20px' }}>uPVC WINDOWS</p>
+        {/* PREMIUM uPVC label */}
+        <p style={{ fontSize: '10px', letterSpacing: '0.28em', color: GOLD, fontWeight: 600, textTransform: 'uppercase', marginBottom: '24px' }}>Premium uPVC Solutions</p>
 
         {/* Headline */}
-        <h1 style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(2.8rem, 5.5vw, 5.2rem)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.025em', textTransform: 'uppercase', color: WHITE, marginBottom: '20px', maxWidth: '640px' }}>
-          Quietly<br />Engineered.<br />Beautifully<br />Designed.
+        <h1 style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(2.5rem, 4.8vw, 4.5rem)', fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.01em', textTransform: 'uppercase', color: WHITE, marginBottom: '24px', maxWidth: '800px' }}>
+          Engineered for <br />
+          <span style={{ fontWeight: 800, color: GOLD }}>Brighter Spaces.</span><br />
+          Designed for a <br />
+          <span style={{ fontWeight: 800 }}>Better Tomorrow.</span>
         </h1>
 
         {/* Subtext */}
