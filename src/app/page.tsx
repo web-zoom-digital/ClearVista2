@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 /* ========================================================
    DESIGN TOKENS - Exactly matching the reference screenshot
@@ -16,10 +16,41 @@ const WHITE = '#ffffff';
 /* ========================================================
    SECTION 1: HERO
    ======================================================== */
+const HERO_IMGS = [
+  '/hero_main.jpg',
+  '/hero_interior.jpg'
+];
+
 function HeroSection() {
+  const [idx, setIdx] = useState(0);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setIdx(prev => (prev + 1) % HERO_IMGS.length);
+        setFading(false);
+      }, 400); // 400ms fade transition
+    }, 2000); // 2 second interval
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section style={{ position: 'relative', height: '100vh', minHeight: '750px', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
-      <Image src="/hero_interior.jpg" alt="ClearVista - Quietly Engineered. Beautifully Designed." fill priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
+      <Image
+        key={HERO_IMGS[idx]}
+        src={HERO_IMGS[idx]}
+        alt="ClearVista - Quietly Engineered. Beautifully Designed."
+        fill
+        priority
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center',
+          opacity: fading ? 0 : 1,
+          transition: 'opacity 0.4s ease'
+        }}
+      />
       {/* Gradient left-to-right */}
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.10) 100%)' }} />
       {/* Bottom gradient */}
