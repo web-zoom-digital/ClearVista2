@@ -15,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body style={{ fontFamily: 'Outfit, sans-serif', background: '#0a0a0a', color: '#fff' }}>
+    <html lang="en" suppressHydrationWarning>
+      <body style={{ fontFamily: 'Outfit, sans-serif', background: '#0a0a0a', color: '#fff' }} suppressHydrationWarning>
         <Navbar />
         {children}
         <Footer />
