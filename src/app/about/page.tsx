@@ -14,20 +14,8 @@ export default function AboutPage() {
   return (
     <main style={{ background: '#0a0a0a', minHeight: '100vh', paddingTop: '72px' }}>
       {/* Hero */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: '85vh', background: '#050505' }}>
-        {/* Left: Poster Image */}
-        <div style={{ position: 'relative', height: '100%' }}>
-          <Image src="/hero_main.jpg" alt="About ClearVista" fill priority style={{ objectFit: 'contain', padding: '32px' }} />
-        </div>
-        {/* Right: Simulated Video Cover */}
-        <div style={{ position: 'relative', height: '100%', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>
-          <Image src="/about_video_cover.jpg" alt="ClearVista Brand Video" fill priority style={{ objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', transition: 'background 0.3s' }}>
-            <div style={{ width: '84px', height: '84px', borderRadius: '50%', background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', transition: 'transform 0.3s' }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style={{ marginLeft: '4px' }}><path d="M5 3l14 9-14 9V3z"/></svg>
-            </div>
-          </div>
-        </div>
+      <section style={{ position: 'relative', height: '85vh', minHeight: '600px', display: 'flex', alignItems: 'flex-end', background: '#050505' }}>
+        <Image src="/about_hero.jpg" alt="About ClearVista - Designed for a better tomorrow" fill priority style={{ objectFit: 'contain', objectPosition: 'center', padding: '16px' }} />
       </section>
 
       {/* Stats */}
