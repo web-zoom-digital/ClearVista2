@@ -32,12 +32,12 @@ function HeroSection() {
         setIdx(prev => (prev + 1) % HERO_IMGS.length);
         setFading(false);
       }, 400); // 400ms fade transition
-    }, 2000); // 2 second interval
+    }, 3000); // 3 second interval
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section style={{ position: 'relative', height: '100vh', minHeight: '750px', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
+    <section style={{ position: 'relative', height: '100vh', minHeight: '750px', display: 'flex', alignItems: 'flex-end', overflow: 'hidden', background: '#050505' }}>
       <Image
         key={HERO_IMGS[idx]}
         src={HERO_IMGS[idx]}
@@ -45,8 +45,9 @@ function HeroSection() {
         fill
         priority
         style={{
-          objectFit: 'cover',
+          objectFit: 'contain',
           objectPosition: 'center',
+          padding: '64px',
           opacity: fading ? 0 : 1,
           transition: 'opacity 0.4s ease'
         }}
