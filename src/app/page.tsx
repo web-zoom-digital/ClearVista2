@@ -37,7 +37,7 @@ function HeroSection() {
         <p style={{ fontSize: '10px', letterSpacing: '0.28em', color: GOLD, fontWeight: 600, textTransform: 'uppercase', marginBottom: '20px' }}>uPVC WINDOWS</p>
 
         {/* Headline */}
-        <h1 style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(3.2rem, 6.5vw, 6.2rem)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.025em', textTransform: 'uppercase', color: WHITE, marginBottom: '20px', maxWidth: '640px' }}>
+        <h1 style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'clamp(2.8rem, 5.5vw, 5.2rem)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-0.025em', textTransform: 'uppercase', color: WHITE, marginBottom: '20px', maxWidth: '640px' }}>
           Quietly<br />Engineered.<br />Beautifully<br />Designed.
         </h1>
 
