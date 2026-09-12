@@ -389,11 +389,12 @@ function WindowAdvantageImage() {
         fill
         loading="lazy"
         style={{
-          objectFit: 'cover',
+          objectFit: 'contain',
           objectPosition: 'center',
+          padding: '32px',
           opacity: fading ? 0 : 1,
           transition: 'opacity 0.4s ease',
-          filter: 'brightness(0.88) contrast(1.06)',
+          filter: 'brightness(0.95) contrast(1.08)',
         }}
       />
       {/* Right edge fade */}
