@@ -14,18 +14,8 @@ export default function AboutPage() {
   return (
     <main style={{ background: '#0a0a0a', minHeight: '100vh', paddingTop: '72px' }}>
       {/* Hero */}
-      <section style={{ position: 'relative', height: '60vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
-        <Image src="/hero_main.jpg" alt="About ClearVista" fill style={{ objectFit: 'cover', objectPosition: 'center' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%)' }} />
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '1400px', margin: '0 auto', width: '100%', padding: '0 48px 64px' }}>
-          <p style={{ fontSize: '11px', letterSpacing: '0.25em', color: '#c8a96e', fontWeight: 600, textTransform: 'uppercase', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ width: '28px', height: '1px', background: '#c8a96e', display: 'inline-block' }} />
-            Our Story
-          </p>
-          <h1 style={{ fontFamily: 'Outfit', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, letterSpacing: '-0.02em', textTransform: 'uppercase', color: 'white' }}>
-            Windows to a<br />Brighter Tomorrow
-          </h1>
-        </div>
+      <section style={{ position: 'relative', height: '85vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end', background: '#050505' }}>
+        <Image src="/hero_main.jpg" alt="About ClearVista" fill priority style={{ objectFit: 'contain', objectPosition: 'center', padding: '16px' }} />
       </section>
 
       {/* Stats */}
