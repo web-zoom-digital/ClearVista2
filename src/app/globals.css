@@ -21,7 +21,12 @@
    RESET & BASE
    ============================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
 body {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -30,6 +35,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
 }
 
 /* ============================
@@ -38,6 +45,26 @@ body {
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: #c8a96e; border-radius: 2px; }
+
+/* ============================
+   GLOBAL OVERFLOW CLIP
+   ============================ */
+img { max-width: 100%; }
+
+/* ============================
+   FOOTER GRID
+   ============================ */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 48px;
+  margin-bottom: 40px;
+}
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
 
 /* ============================
    NAVBAR RESPONSIVE — CORE
@@ -132,6 +159,10 @@ body {
 
   /* Footer CTA */
   .footer-cta-inner { padding: 0 18px !important; text-align: left; }
+
+  /* Footer: single col on mobile */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .footer-links-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; }
 
   /* ── PRODUCTS PAGE ── */
   /* ProductSection: full-width single col, image on top */

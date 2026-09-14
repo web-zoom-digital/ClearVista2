@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body style={{ fontFamily: 'Outfit, sans-serif', background: '#0a0a0a', color: '#fff' }} suppressHydrationWarning>
+      <body style={{ fontFamily: 'Outfit, sans-serif', background: '#0a0a0a', color: '#fff', overflowX: 'hidden', maxWidth: '100%', position: 'relative' }} suppressHydrationWarning>
         <Navbar />
         {children}
         <Footer />
