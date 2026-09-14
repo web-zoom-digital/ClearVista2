@@ -26,10 +26,10 @@ function useFadeUp(threshold = 0.15) {
   return { ref, visible };
 }
 
-function FadeUp({ children, delay = 0, style = {} }: { children: ReactNode; delay?: number; style?: React.CSSProperties }) {
+function FadeUp({ children, delay = 0, style = {}, className = '' }: { children: ReactNode; delay?: number; style?: React.CSSProperties; className?: string }) {
   const { ref, visible } = useFadeUp();
   return (
-    <div ref={ref} style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(32px)', transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`, ...style }}>
+    <div ref={ref} className={className} style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(32px)', transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`, ...style }}>
       {children}
     </div>
   );
@@ -176,21 +176,17 @@ function ProductSection({ product, index }: { product: typeof PRODUCTS[0]; index
 
   return (
     <section
+      className={`product-section-grid ${isEven ? 'even' : 'odd'}`}
       style={{
-        display: 'grid',
-        gridTemplateColumns: isEven ? '58% 42%' : '42% 58%',
-        minHeight: '580px',
         background: index % 3 === 0 ? D : index % 3 === 1 ? '#0d0d0d' : '#111111',
         borderBottom: '1px solid rgba(255,255,255,0.04)',
-        overflow: 'hidden',
       }}
     >
-      {/* IMAGE SIDE */}
       {isEven ? (
         <>
           {/* Image left */}
           <div
-            style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
+            className="product-img-col"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
@@ -206,19 +202,15 @@ function ProductSection({ product, index }: { product: typeof PRODUCTS[0]; index
                 filter: hovered ? 'brightness(1.05)' : 'brightness(0.95)',
               }}
             />
-            {/* Subtle right fade */}
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, transparent 55%, rgba(10,10,10,0.5) 100%)' }} />
           </div>
-          {/* Text right */}
           <ProductText product={product} />
         </>
       ) : (
         <>
-          {/* Text left */}
           <ProductText product={product} reverse />
-          {/* Image right */}
           <div
-            style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer' }}
+            className="product-img-col"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
@@ -234,7 +226,6 @@ function ProductSection({ product, index }: { product: typeof PRODUCTS[0]; index
                 filter: hovered ? 'brightness(1.05)' : 'brightness(0.95)',
               }}
             />
-            {/* Subtle left fade */}
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to left, transparent 55%, rgba(10,10,10,0.5) 100%)' }} />
           </div>
         </>
@@ -245,7 +236,7 @@ function ProductSection({ product, index }: { product: typeof PRODUCTS[0]; index
 
 function ProductText({ product, reverse = false }: { product: typeof PRODUCTS[0]; reverse?: boolean }) {
   return (
-    <FadeUp delay={100} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px 56px', position: 'relative', overflow: 'hidden' }}>
+    <FadeUp delay={100} className="product-text-col" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
       {/* Large background number */}
       <span style={{
         position: 'absolute',
@@ -439,13 +430,13 @@ function AdvantageSection({ activeTab }: { activeTab: 'windows' | 'doors' }) {
 
   return (
     <section id="advantage" style={{ background: '#080808', padding: '0', borderTop: '1px solid rgba(200,169,110,0.1)', borderBottom: '1px solid rgba(200,169,110,0.1)' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '55% 45%', minHeight: '680px' }}>
+      <div className="advantage-section-grid">
 
         {/* LEFT: Auto-slideshow for windows and doors */}
         <AdvantageImageSlideshow images={isDoors ? DOOR_ADV_IMGS : WIN_ADV_IMGS} />
 
         {/* RIGHT: Feature labels */}
-        <FadeUp delay={0} style={{ padding: '72px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <FadeUp delay={0} style={{ padding: '56px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <p style={{ fontSize: '9px', letterSpacing: '0.28em', color: G, fontWeight: 600, textTransform: 'uppercase', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{ width: '24px', height: '1px', background: G, display: 'inline-block' }} />
             Engineering
@@ -488,7 +479,7 @@ function ProductHero({ activeTab, setActiveTab }: { activeTab: 'windows' | 'door
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.2) 100%)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%)' }} />
 
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '1440px', margin: '0 auto', width: '100%', padding: '0 52px 64px' }}>
+        <div className="products-hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: '1440px', margin: '0 auto', width: '100%', padding: '0 52px 64px' }}>
           <p style={{ fontSize: '9px', letterSpacing: '0.3em', color: G, fontWeight: 600, textTransform: 'uppercase', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ width: '28px', height: '1px', background: G }} />
             ClearVista Products
@@ -503,23 +494,23 @@ function ProductHero({ activeTab, setActiveTab }: { activeTab: 'windows' | 'door
       </section>
 
       {/* Sticky tab bar */}
-      <div style={{ background: '#0a0a0a', borderBottom: '1px solid rgba(255,255,255,0.06)', position: 'sticky', top: '68px', zIndex: 40, backdropFilter: 'blur(12px)' }}>
-        <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 52px', display: 'flex', gap: '0', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ background: '#0a0a0a', borderBottom: '1px solid rgba(255,255,255,0.06)', position: 'sticky', top: '64px', zIndex: 40, backdropFilter: 'blur(12px)' }}>
+        <div className="products-tab-bar-inner">
           <div style={{ display: 'flex' }}>
             {(['windows', 'doors'] as const).map(tab => (
               <button key={tab} onClick={() => setActiveTab(tab)} style={{
-                padding: '18px 32px',
-                fontSize: '10.5px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase',
+                padding: '16px 24px',
+                fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
                 background: 'transparent', border: 'none', cursor: 'pointer',
                 color: activeTab === tab ? W : 'rgba(255,255,255,0.3)',
                 borderBottom: activeTab === tab ? `1.5px solid ${G}` : '1.5px solid transparent',
-                transition: 'all 0.25s ease', fontFamily: 'Outfit, sans-serif',
+                transition: 'all 0.25s ease', fontFamily: 'Outfit, sans-serif', whiteSpace: 'nowrap',
               }}>
                 {tab === 'windows' ? 'Windows — 8 Systems' : 'Doors — 6 Systems'}
               </button>
             ))}
           </div>
-          <Link href="/contact" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: G, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', transition: 'opacity 0.2s ease' }}
+          <Link href="/contact" className="tab-quote-link" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: G, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', transition: 'opacity 0.2s ease' }}
             onMouseEnter={e => { e.currentTarget.style.opacity = '0.7'; }}
             onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}>
             Request a Quote →
@@ -539,9 +530,9 @@ function StatsStrip({ type }: { type: 'windows' | 'doors' }) {
     : [{ n: '6', l: 'Door Systems' }, { n: '5pt', l: 'Locking Points' }, { n: 'RC2', l: 'Burglar Rating' }, { n: '10yr', l: 'Warranty' }];
   return (
     <div style={{ background: '#0d0d0d', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-      <div style={{ maxWidth: '1440px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
+      <div className="stats-strip-grid">
         {stats.map((s, i) => (
-          <div key={s.l} style={{ padding: '28px 32px', textAlign: 'center', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
+          <div key={s.l} style={{ padding: '22px 16px', textAlign: 'center', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
             <p style={{ fontFamily: 'Outfit, sans-serif', fontSize: '1.8rem', fontWeight: 900, color: G, lineHeight: 1, marginBottom: '6px' }}>{s.n}</p>
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', fontWeight: 600 }}>{s.l}</p>
           </div>
@@ -556,7 +547,7 @@ function StatsStrip({ type }: { type: 'windows' | 'doors' }) {
    ================================================================ */
 function BottomCTA() {
   return (
-    <section style={{ position: 'relative', padding: '110px 52px', overflow: 'hidden', minHeight: '460px', display: 'flex', alignItems: 'center' }}>
+    <section className="bottom-cta-section" style={{ position: 'relative', padding: '80px 52px', overflow: 'hidden', minHeight: '400px', display: 'flex', alignItems: 'center' }}>
       <Image src="/footer_cta_bg.jpg" alt="Request a Quote" fill style={{ objectFit: 'cover', objectPosition: 'center 40%', filter: 'brightness(0.5)' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.3) 100%)' }} />
       <FadeUp style={{ position: 'relative', zIndex: 2, maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
@@ -590,8 +581,8 @@ function BottomCTA() {
    ================================================================ */
 function SectionIntro({ type }: { type: 'windows' | 'doors' }) {
   return (
-    <FadeUp style={{ padding: '64px 52px 48px', maxWidth: '1440px', margin: '0 auto' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'end' }}>
+    <FadeUp className="section-inner" style={{ padding: '52px 52px 40px' }}>
+      <div className="section-intro-grid">
         <div>
           <p style={{ fontSize: '9px', letterSpacing: '0.28em', color: G, fontWeight: 600, textTransform: 'uppercase', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{ width: '24px', height: '1px', background: G }} />
@@ -619,7 +610,7 @@ export default function ProductsPage() {
   const filtered = PRODUCTS.filter(p => p.category === activeTab);
 
   return (
-    <main style={{ background: D, minHeight: '100vh', paddingTop: '68px' }}>
+    <main style={{ background: D, minHeight: '100vh', paddingTop: '64px' }}>
       <ProductHero activeTab={activeTab} setActiveTab={setActiveTab} />
       <StatsStrip type={activeTab} />
       <div style={{ background: D }}>

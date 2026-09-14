@@ -40,7 +40,20 @@ body {
 ::-webkit-scrollbar-thumb { background: #c8a96e; border-radius: 2px; }
 
 /* ============================
-   TAILWIND RESPONSIVE HELPERS
+   NAVBAR RESPONSIVE — CORE
+   ============================ */
+.nav-links-desktop { display: none; }
+.nav-cta-desktop   { display: none; }
+.nav-hamburger     { display: flex; }
+
+@media (min-width: 1024px) {
+  .nav-links-desktop { display: flex !important; align-items: center; gap: 28px; }
+  .nav-cta-desktop   { display: flex !important; }
+  .nav-hamburger     { display: none !important; }
+}
+
+/* ============================
+   TAILWIND COMPAT HELPERS
    ============================ */
 @layer utilities {
   .hidden { display: none; }
@@ -54,130 +67,129 @@ body {
 /* ============================
    RESPONSIVE UTILITY CLASSES
    ============================ */
-
-/* Section padding responsive */
-.section-pad { padding: 96px 0; }
+.section-pad   { padding: 96px 0; }
 .section-inner { max-width: 1440px; margin: 0 auto; padding: 0 52px; }
-
-/* Hero */
 .hero-content-pad { padding: 0 52px 92px; }
 
-/* Window grid: 4 cols → 2 cols → 1 col */
-.win-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+/* Grids */
+.win-grid      { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
+.perf-grid     { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+.stats-grid    { display: grid; grid-template-columns: repeat(4, 1fr); }
+.lifestyle-grid{ display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: start; }
+.advantage-grid{ display: grid; grid-template-columns: 4fr 8fr; gap: 80px; align-items: center; }
+.advantage-inner{ display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: stretch; }
+.spaces-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.two-col       { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.testi-grid    { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.miy-layout    { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+.swatches-row  { display: flex; gap: 16px; align-items: flex-start; }
+.swatch-item   { width: 130px; height: 88px; }
 
-/* Performance grid: 5 cols → 2 cols → 1 col */
-.perf-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
-
-/* Stats grid: 4 cols → 2 cols */
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-
-/* Lifestyle 2-col → 1 col */
-.lifestyle-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: start; }
-
-/* Advantage 2-col → 1 col */
-.advantage-grid { display: grid; grid-template-columns: 4fr 8fr; gap: 80px; align-items: center; }
-
-/* Advantage inner grid */
-.advantage-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: stretch; }
-
-/* Make it yours swatches row */
-.swatches-row { display: flex; gap: 16px; align-items: flex-start; }
-.swatch-item { width: 130px; height: 88px; }
-
-/* Real Spaces grid */
-.spaces-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-
-/* 2-col generic grid */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-
-/* Testimonials grid */
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-
-/* Make It Yours main layout */
-.miy-layout { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+/* Products page */
+.product-section-grid { display: grid; min-height: 580px; overflow: hidden; }
+.product-section-grid.even { grid-template-columns: 58% 42%; }
+.product-section-grid.odd  { grid-template-columns: 42% 58%; }
+.product-img-col   { position: relative; overflow: hidden; min-height: 320px; }
+.product-text-col  { display: flex; flex-direction: column; justify-content: center; padding: 60px 56px; position: relative; overflow: hidden; }
+.advantage-section-grid { display: grid; grid-template-columns: 55% 45%; min-height: 680px; }
+.section-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
+.products-tab-bar-inner { max-width: 1440px; margin: 0 auto; padding: 0 52px; display: flex; gap: 0; justify-content: space-between; align-items: center; }
+.stats-strip-grid { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
 
 /* ============================
-   MOBILE STYLES (≤ 768px)
+   MOBILE (≤ 767px)
    ============================ */
-@media (max-width: 768px) {
-  /* Nav mobile padding */
-  .section-inner { padding: 0 20px; }
-  .section-pad { padding: 56px 0; }
-  .hero-content-pad { padding: 0 20px 60px; }
+@media (max-width: 767px) {
+  /* Base spacing */
+  .section-inner    { padding: 0 18px !important; }
+  .section-pad      { padding: 52px 0 !important; }
+  .hero-content-pad { padding: 0 18px 56px !important; }
 
-  /* Hero min-height for mobile */
-  .hero-section { min-height: 100svh !important; }
-  .hero-top-label { display: none !important; }
+  /* Hero */
+  .hero-section     { min-height: 100svh !important; }
+  .hero-top-label   { display: none !important; }
+  .hero-bottom-tags { margin-top: 28px !important; flex-wrap: wrap; gap: 8px; }
 
-  /* Bottom tags on hero */
-  .hero-bottom-tags { margin-top: 36px !important; flex-wrap: wrap; gap: 10px; }
+  /* Grids → single col */
+  .two-col        { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .lifestyle-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .advantage-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .advantage-inner{ grid-template-columns: 1fr !important; }
+  .advantage-img  { height: 260px !important; }
+  .win-grid       { grid-template-columns: repeat(2, 1fr) !important; }
+  .win-header-row { flex-direction: column !important; align-items: flex-start !important; gap: 10px; }
+  .perf-grid      { grid-template-columns: repeat(2, 1fr) !important; border: none !important; }
+  .spaces-grid    { grid-template-columns: 1fr !important; }
+  .spaces-header-row { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+  .testi-grid     { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .stats-grid     { grid-template-columns: repeat(2, 1fr) !important; }
 
-  /* Window grid: 2 columns on mobile */
-  .win-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .win-header-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px; }
+  /* Make It Yours */
+  .miy-layout   { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .miy-cta      { border-left: none !important; border-top: 1px solid rgba(255,255,255,0.1) !important; padding-left: 0 !important; padding-top: 24px !important; }
+  .swatches-row { flex-wrap: wrap !important; gap: 10px !important; }
+  .swatch-item  { width: 72px !important; height: 50px !important; }
 
-  /* Performance: 2 col on mobile */
-  .perf-grid { grid-template-columns: repeat(2, 1fr) !important; border: none !important; }
+  /* Footer CTA */
+  .footer-cta-inner { padding: 0 18px !important; text-align: left; }
 
-  /* Lifestyle: stack vertically */
-  .lifestyle-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  /* ── PRODUCTS PAGE ── */
+  /* ProductSection: full-width single col, image on top */
+  .product-section-grid.even,
+  .product-section-grid.odd  { grid-template-columns: 1fr !important; grid-template-rows: 260px auto !important; min-height: unset !important; }
 
-  /* Advantage: stack vertically */
-  .advantage-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-  .advantage-inner { grid-template-columns: 1fr !important; }
-  .advantage-img { height: 280px !important; }
+  /* Always show image first (row 1) then text (row 2) */
+  .product-section-grid.odd .product-img-col   { order: -1; }
+  .product-section-grid .product-img-col   { min-height: 260px !important; height: 260px !important; }
+  .product-section-grid .product-text-col  { padding: 32px 18px 36px !important; }
 
-  /* Make it yours: stack layout */
-  .miy-layout { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .miy-cta { border-left: none !important; border-top: 1px solid rgba(255,255,255,0.1) !important; padding-left: 0 !important; padding-top: 24px !important; }
-  .swatches-row { flex-wrap: wrap !important; gap: 12px !important; }
-  .swatch-item { width: 80px !important; height: 56px !important; }
+  /* Advantage section: stack image then text */
+  .advantage-section-grid { grid-template-columns: 1fr !important; grid-template-rows: 280px auto !important; min-height: unset !important; }
 
-  /* Real Spaces: 1 col */
-  .spaces-grid { grid-template-columns: 1fr !important; }
-  .spaces-header-row { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  /* Section intro: single col */
+  .section-intro-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
 
-  /* Testimonials: 1 col */
-  .testi-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  /* Tab bar: shrink to fit */
+  .products-tab-bar-inner { padding: 0 10px !important; flex-wrap: wrap !important; gap: 4px !important; }
+  .products-tab-bar-inner button { padding: 12px 12px !important; font-size: 9px !important; }
+  .products-tab-bar-inner .tab-quote-link { display: none !important; }
 
-  /* Stats: 2 cols */
-  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  /* Stats strip */
+  .stats-strip-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .stats-strip-grid > div { padding: 18px 12px !important; }
 
-  /* 2-col generic → single col */
-  .two-col { grid-template-columns: 1fr !important; gap: 36px !important; }
+  /* Hero padding */
+  .products-hero-content { padding: 0 18px 48px !important; }
 
-  /* footer CTA padding */
-  .footer-cta-inner { padding: 0 20px !important; text-align: center; }
+  /* Bottom CTA */
+  .bottom-cta-section { padding: 64px 18px !important; }
 }
 
 /* ============================
-   TABLET STYLES (769px – 1023px)
+   TABLET (768px – 1023px)
    ============================ */
-@media (min-width: 769px) and (max-width: 1023px) {
-  .section-inner { padding: 0 32px; }
-  .hero-content-pad { padding: 0 32px 72px; }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-inner    { padding: 0 32px !important; }
+  .hero-content-pad { padding: 0 32px 72px !important; }
 
-  /* 4-col → 2-col */
   .win-grid { grid-template-columns: repeat(2, 1fr) !important; }
-
-  /* 5-col → 3-col */
-  .perf-grid { grid-template-columns: repeat(3, 1fr) !important; }
-
-  /* lifestyle stays 2-col but closer */
+  .perf-grid{ grid-template-columns: repeat(3, 1fr) !important; }
   .lifestyle-grid { gap: 40px !important; }
-
-  /* Advantage stack */
   .advantage-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .swatches-row   { flex-wrap: wrap !important; }
+  .swatch-item    { width: 100px !important; height: 68px !important; }
+  .miy-layout     { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .miy-cta        { border-left: none !important; border-top: 1px solid rgba(255,255,255,0.1) !important; padding-left: 0 !important; padding-top: 24px !important; }
+  .stats-grid     { grid-template-columns: repeat(2, 1fr) !important; }
+  .testi-grid     { grid-template-columns: repeat(2, 1fr) !important; }
 
-  /* Swatches */
-  .swatches-row { flex-wrap: wrap !important; }
-  .swatch-item { width: 100px !important; height: 68px !important; }
-  .miy-layout { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .miy-cta { border-left: none !important; border-top: 1px solid rgba(255,255,255,0.1) !important; padding-left: 0 !important; padding-top: 24px !important; }
-
-  /* Stats: 2-col */
-  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
-
-  /* Testimonials: 2-col */
-  .testi-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  /* Products */
+  .product-section-grid.even,
+  .product-section-grid.odd  { grid-template-columns: 1fr !important; grid-template-rows: 380px auto !important; min-height: unset !important; }
+  .product-section-grid.odd .product-img-col { order: -1; }
+  .product-section-grid .product-img-col { min-height: 380px !important; height: 380px !important; }
+  .product-section-grid .product-text-col { padding: 48px 32px !important; }
+  .advantage-section-grid { grid-template-columns: 1fr !important; grid-template-rows: 380px auto !important; min-height: unset !important; }
+  .section-intro-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .products-tab-bar-inner { padding: 0 24px !important; }
 }

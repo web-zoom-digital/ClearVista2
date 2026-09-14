@@ -18,7 +18,6 @@ export default function Navbar() {
     { label: 'Spaces', href: '/gallery' },
     { label: 'Technology', href: '/#advantage' },
     { label: 'About', href: '/about' },
-    { label: 'Inspiration', href: '/gallery' },
     { label: 'Stories', href: '/#testimonials' },
   ];
 
@@ -42,25 +41,21 @@ export default function Navbar() {
           <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: '16px', fontWeight: 900, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'white' }}>
             CLEARVISTA
           </span>
-          <span style={{ fontSize: '7px', letterSpacing: '0.22em', color: GOLD, fontWeight: 400, textTransform: 'uppercase' }}>
+          <span style={{ fontSize: '7px', letterSpacing: '0.2em', color: GOLD, fontWeight: 400, textTransform: 'uppercase' }}>
             Windows to a Brighter Tomorrow
           </span>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="hidden lg:flex">
+        {/* Desktop Nav Links — uses our custom CSS class */}
+        <div className="nav-links-desktop">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               style={{
-                fontSize: '10px',
-                fontWeight: 600,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.65)',
-                textDecoration: 'none',
-                transition: 'color 0.2s ease',
+                fontSize: '10px', fontWeight: 600, letterSpacing: '0.12em',
+                textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)',
+                textDecoration: 'none', transition: 'color 0.2s ease',
               }}
               onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.95)'; }}
               onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; }}
@@ -70,18 +65,17 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* GET A QUOTE button */}
-        <div className="hidden lg:flex">
+        {/* Desktop CTA */}
+        <div className="nav-cta-desktop">
           <Link
             href="/contact"
             style={{
-              display: 'inline-flex', alignItems: 'center', gap: '10px',
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
               padding: '9px 20px',
               border: '1px solid rgba(255,255,255,0.35)',
               color: 'rgba(255,255,255,0.85)',
               fontSize: '10px', fontWeight: 700, letterSpacing: '0.13em', textTransform: 'uppercase',
-              textDecoration: 'none',
-              transition: 'all 0.25s ease',
+              textDecoration: 'none', transition: 'all 0.25s ease',
             }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = GOLD; e.currentTarget.style.color = GOLD; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'; e.currentTarget.style.color = 'rgba(255,255,255,0.85)'; }}
@@ -90,37 +84,80 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — uses our custom CSS class */}
         <button
+          className="nav-hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{ display: 'flex', flexDirection: 'column', gap: '5px', padding: '8px', background: 'none', border: 'none', cursor: 'pointer' }}
-          className="flex lg:hidden"
-          aria-label="Toggle menu"
+          style={{
+            flexDirection: 'column', gap: '5px', padding: '8px',
+            background: 'none', border: 'none', cursor: 'pointer',
+          }}
+          aria-label="Toggle navigation menu"
         >
-          {[0, 1, 2].map((i) => (
-            <span key={i} style={{
-              display: 'block', width: '22px', height: '1.5px',
-              background: menuOpen && i !== 1 ? GOLD : i === 1 && menuOpen ? 'transparent' : 'white',
-              transition: 'all 0.3s ease',
-              transform: menuOpen && i === 0 ? 'rotate(45deg) translateY(6.5px)' : menuOpen && i === 2 ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
-            }} />
-          ))}
+          <span style={{
+            display: 'block', width: '24px', height: '1.5px',
+            background: menuOpen ? GOLD : 'white',
+            transition: 'all 0.3s ease',
+            transform: menuOpen ? 'rotate(45deg) translateY(6.5px)' : 'none',
+          }} />
+          <span style={{
+            display: 'block', width: '24px', height: '1.5px',
+            background: 'white',
+            transition: 'all 0.3s ease',
+            opacity: menuOpen ? 0 : 1,
+          }} />
+          <span style={{
+            display: 'block', width: '24px', height: '1.5px',
+            background: menuOpen ? GOLD : 'white',
+            transition: 'all 0.3s ease',
+            transform: menuOpen ? 'rotate(-45deg) translateY(-6.5px)' : 'none',
+          }} />
         </button>
       </div>
 
       {/* Mobile menu dropdown */}
-      {menuOpen && (
-        <div style={{ background: 'rgba(8,8,8,0.99)', padding: '8px 20px 24px', borderTop: '1px solid rgba(200,169,110,0.12)' }}>
-          {navLinks.map(link => (
-            <Link key={link.label} href={link.href} onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '14px 0', fontSize: '12px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{
+        overflow: 'hidden',
+        maxHeight: menuOpen ? '600px' : '0',
+        transition: 'max-height 0.35s ease',
+        background: 'rgba(5,5,5,0.99)',
+        borderTop: menuOpen ? '1px solid rgba(200,169,110,0.12)' : 'none',
+      }}>
+        <div style={{ padding: '8px 20px 28px' }}>
+          {navLinks.map((link, i) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                padding: '15px 0',
+                fontSize: '13px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.75)', textDecoration: 'none',
+                borderBottom: i < navLinks.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+              }}
+            >
               {link.label}
+              <span style={{ color: GOLD, fontSize: '12px' }}>→</span>
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setMenuOpen(false)} style={{ display: 'inline-flex', marginTop: '20px', padding: '12px 28px', background: GOLD, color: '#0a0a0a', fontSize: '11px', fontWeight: 800, letterSpacing: '0.13em', textTransform: 'uppercase', textDecoration: 'none' }}>
-            Get a Quote →
-          </Link>
+          <div style={{ marginTop: '24px' }}>
+            <Link
+              href="/contact"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '10px',
+                padding: '14px 32px',
+                background: GOLD, color: '#0a0a0a',
+                fontSize: '11px', fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase',
+                textDecoration: 'none',
+              }}
+            >
+              Get a Free Quote →
+            </Link>
+          </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
